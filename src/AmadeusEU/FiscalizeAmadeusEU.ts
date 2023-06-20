@@ -1,7 +1,7 @@
 import { AmadeusEURules } from '../validator/rules/rulesAmadeusEU';
-import { FiscalizationRequest, FiscalizationResponse, CheckFiscalizationResponse } from '../types';
+import { FiscalizationRequest, FiscalizationResponse, FiscalizedResponse } from '../types';
 import { Resource } from '../Resource';
-import { Validator }  from '../validator/Validation';
+import { Validation }  from '../validator/Validation';
 
 export class FiscalizeAmadeusEU extends Resource {
   /**
@@ -17,8 +17,8 @@ export class FiscalizeAmadeusEU extends Resource {
   /**
    * Post request to PU.
    */
-  public post = async (data: FiscalizationRequest): Promise<FiscalizationResponse<CheckFiscalizationResponse>> => {
-    Validator.validate(data, AmadeusEURules);
+  public post = async (data: FiscalizationRequest): Promise<FiscalizationResponse<FiscalizedResponse>> => {
+    Validation.validate(data, AmadeusEURules);
 
     return this.request({ method: 'POST', path: `${this.path}`, data });
   }

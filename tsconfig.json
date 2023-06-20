@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
     "lib": ["es2020"],
     "allowJs": true,
     "outDir": "dist",
     "rootDir": "src",
     "isolatedModules": true,
     "strict": true,
+    "sourceMap": true,
     "noImplicitAny": true,
     "alwaysStrict": true,
     "noUnusedParameters": true,
@@ -20,5 +21,5 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true
   },
-  "exclude": ["node_modules", "**/*.spec.ts"]
+  "exclude": ["node_modules", "**/*.spec.ts", "dist", "rollup.config.mjs"]
 }

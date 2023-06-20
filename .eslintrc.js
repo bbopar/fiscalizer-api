@@ -6,7 +6,6 @@ module.exports = {
     node: true,
   },
   extends: [
-    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
@@ -17,6 +16,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    '@typescript-eslint/indent': ['error', 2],
     '@typescript-eslint/no-non-null-assertion': 0,
     '@typescript-eslint/no-explicit-any': 0,
     'react/no-unescaped-entities': 0,
@@ -32,13 +32,5 @@ module.exports = {
     'no-unsafe-finally': 0,
     'no-useless-escape': 0,
     'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
-    "indent": [
-      "error",
-      2,
-      {
-        "SwitchCase": 1
-      }
-    ],
-    "require-yield": "off"
   },
 }

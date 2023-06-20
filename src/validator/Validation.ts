@@ -1,13 +1,12 @@
-import ValidatorJS, { Rules, ErrorMessages } from "validatorjs";
+/* eslint-disable no-console */
+import Validator, { Rules } from "validatorjs";
 
-export class Validator {
-  static validate(data: any, rules: Rules, customErrorMessages?: ErrorMessages): boolean {
-    const validation = new ValidatorJS(data, rules, customErrorMessages);
+export class Validation {
+  static async validate(data: any, rules: Rules) {
+    Validator.useLang("en");
+      
+    const validation = new Validator(data, rules, {});
 
-    if (validation.fails()) {
-      throw new Error('Validation failed: ' + JSON.stringify(validation.errors.all()));
-    }
-
-    return true;
+    validation.check();
   }
 };

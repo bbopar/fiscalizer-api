@@ -60,7 +60,7 @@ export class Client {
     const headers = {
       'Content-Type': 'application/json',
       company: 'BARRAGE_TEST',
-      'api-key': 'apiKeychinaTestna',
+      'api-key': 'TODO',
     };
 
     if (params) {
