@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import fetch from 'node-fetch';
 import { URL, URLSearchParams } from 'url';
 import {
@@ -60,7 +61,7 @@ export class Client {
     const headers = {
       'Content-Type': 'application/json',
       company: 'BARRAGE_TEST',
-      'api-key': 'TODO',
+      'api-key': 'apiKeychinaTestna',
     };
 
     if (params) {

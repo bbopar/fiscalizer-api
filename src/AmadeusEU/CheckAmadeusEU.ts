@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import { AmadeusEURules } from '../validator/rules/rulesAmadeusEU';
+import { AmadeusEUSchema } from '../validator/schema/schemaAmadeusEU';
 import { FiscalizationRequest, FiscalizationResponse, CheckFiscalizationResponse } from '../types';
 import { Resource } from '../Resource';
 import { Validation }  from '../validator/Validation';
@@ -19,8 +18,8 @@ export class CheckAmadeusEU extends Resource {
    * Post request to PU.
    */
   public post = async (data: FiscalizationRequest): Promise<FiscalizationResponse<CheckFiscalizationResponse>> => {
-    Validation.validate(data, AmadeusEURules);
-  
+    await Validation.validate(data, AmadeusEUSchema);
+    
     return this.request({ method: 'POST', path: `${this.path}`, data });
   }
 }

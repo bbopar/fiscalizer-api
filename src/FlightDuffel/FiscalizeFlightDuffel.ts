@@ -1,7 +1,7 @@
 import { CheckFiscalizationResponse, FiscalizationRequest, FiscalizationResponse } from '../types';
-import { FlightDuffelRules } from '../validator/rules/rulesFlightDuffel';
 import { Resource } from '../Resource';
-import { Validation } from '../validator/Validation';
+import { Validation } from 'validator/Validation';
+import { FlightDuffelSchema } from 'validator/schema/schemaFlightDuffel';
 
 export class FiscalizeFlightDuffel extends Resource {
   /**
@@ -18,7 +18,7 @@ export class FiscalizeFlightDuffel extends Resource {
    * Post request to PU.
    */
   public post = async (data: FiscalizationRequest): Promise<FiscalizationResponse<CheckFiscalizationResponse>> => {
-    Validation.validate(data, FlightDuffelRules);
+    await Validation.validate(data, FlightDuffelSchema);
 
     return this.request({ method: 'POST', path: `${this.path}`, data });
   }

@@ -1,7 +1,7 @@
 import { CheckFiscalizationResponse, FiscalizationRequest, FiscalizationResponse } from '../types';
-import { GDSAmadeusNonEURules } from '../validator/rules/rulesGDSAmadeusNonEU';
+import { GDSAmadeusNonEUSchema } from 'validator/schema/schemaGDSAmadeusNonEU';
 import { Resource } from '../Resource';
-import { Validation } from '../validator/Validation';
+import { Validation } from 'validator/Validation';
 
 export class CheckGDSAmadeusNonEU extends Resource {
   /**
@@ -18,7 +18,7 @@ export class CheckGDSAmadeusNonEU extends Resource {
    * Post request to PU.
    */
   public post = async (data: FiscalizationRequest): Promise<FiscalizationResponse<CheckFiscalizationResponse>> => {
-    Validation.validate(data, GDSAmadeusNonEURules);
+    await Validation.validate(data, GDSAmadeusNonEUSchema);
 
     return this.request({ method: 'POST', path: `${this.path}`, data });
   }

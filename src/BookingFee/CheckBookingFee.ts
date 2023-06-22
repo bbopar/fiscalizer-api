@@ -1,7 +1,7 @@
-import { BookingFeeRules } from '../validator/rules/rulesBookingFee';
+import { BookingFeeSchema } from 'validator/schema/schemaBookingFee';
 import { CheckFiscalizationResponse, FiscalizationRequest, FiscalizationResponse } from '../types';
 import { Resource } from '../Resource';
-import { Validation } from '../validator/Validation';
+import { Validation } from 'validator/Validation';
 
 export class CheckBookingFee extends Resource {
   /**
@@ -18,7 +18,7 @@ export class CheckBookingFee extends Resource {
    * Post request to PU.
    */
   public post = async (data: FiscalizationRequest): Promise<FiscalizationResponse<CheckFiscalizationResponse>> => {
-    Validation.validate(data, BookingFeeRules);
+    await Validation.validate(data, BookingFeeSchema);
 
     return this.request({ method: 'POST', path: `${this.path}`, data });
   }
