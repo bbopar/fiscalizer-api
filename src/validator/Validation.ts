@@ -1,4 +1,4 @@
-import { FiscalizerError } from 'types';
+import { ValidationError } from 'types';
 import * as yup from 'yup';
 
 export class Validation {
@@ -18,7 +18,7 @@ export class Validation {
           };
         }));
 
-      throw new FiscalizerError({ errors: validationErrors });
+      throw new ValidationError({ errors: validationErrors });
     }
 
     return true;

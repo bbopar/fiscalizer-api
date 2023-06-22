@@ -26,6 +26,20 @@ export class FiscalizerError extends Error {
   }
 }
 
+export class ValidationError extends Error {
+  public errors: ErrorResponse[]
+
+  constructor({
+    errors
+  }: {
+    errors: ErrorResponse[]
+  }) {
+    super();
+    this.errors = errors;
+    this.stack = 'ValidationError';
+  }
+}
+
 export interface FiscalizedResponse {
   jir: string
   messageId: string

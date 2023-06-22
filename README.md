@@ -73,11 +73,11 @@ Expected output from `console.log(fiscalizeAmadeusEU)`:
 
 If there are any errors with your request, the client library will throw an error which you can catch.
 
-You'll find information about what was wrong in the `errors` field, and useful context like the `status`.
+You'll find information about what was wrong in the `errors` field, and useful context like the `message` or `status`.
 
 ```javascript
 try {
-  const test = await fiscalizerAPI.fiscalizeFlightDuffel.post({ vat: [] });
+  const test = await fiscalizerAPI.fiscalizeFlightDuffel.post({ additionalProp: [] });
   console.log(test)
 } catch (error) {
   console.log(error)
@@ -86,7 +86,19 @@ try {
 
 Expecting output from `console.log(error)` similar to:
 
-TODO
+```
+[ValidationError] {
+  errors: [
+    {
+      code: '422',
+      documentation_url: '',
+      message: 'this field has unspecified keys: additionalProp',
+      title: 'validation_error',
+      type: 'noUnknown'
+    }
+  ]
+}
+```
 
 ## Installation
 
