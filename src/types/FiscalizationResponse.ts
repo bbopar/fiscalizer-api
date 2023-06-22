@@ -13,19 +13,6 @@ export interface ErrorResponse {
   type: string
 }
 
-export class FiscalizerError extends Error {
-  public errors: ErrorResponse[]
-
-  constructor({
-    errors
-  }: {
-    errors: ErrorResponse[]
-  }) {
-    super()
-    this.errors = errors
-  }
-}
-
 export class ValidationError extends Error {
   public errors: ErrorResponse[]
 

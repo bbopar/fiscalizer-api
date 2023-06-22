@@ -34,13 +34,14 @@ To get started, import the `FiscalizerAPI` module into your code and initialize 
 import { FiscalizerAPI } from 'fiscalizer-api'
 
 const fiscalizerAPI = new FiscalizerAPI({
-  // Give a name of the source accessing to the API.
-  source: process.env.YOUR_SOURCE,
-})
+  basePath: process.env.YOUR_BASE_PATH_TO_FISCALIZER_SERVER,
+  apiKey: process.env.YOUR_API_KEY_FOR_THE_FISCALIZER_SERVER,
+  company: process.env.YOUR_COMPANY_NAME_ON_WHICH_CERT_IS_REGISTERED,
+});
 
 // To quickly test whether your integration is working, you can fiscalize flight invoice for example.
 const fiscalizedFlight = await fiscalizerAPI.fiscalizeFlightDuffel.post(fiscalData);
-console.log(fiscalizedFlight)
+console.log(fiscalizedFlight);
 ```
 
 ### TypeScript
@@ -48,7 +49,7 @@ console.log(fiscalizedFlight)
 The FiscalizerAPI JavaScript client library is written in TypeScript and comes with types for Fiscalizer API objects, which you can easily import.
 
 ```javascript
-import { FiscalizationResponse } from 'fiscalizer-api'
+import { FiscalizationResponse } from 'fiscalizer-api';
 
 const response = await fiscalizerAPI.fiscalizeFlightDuffel.post(invoice_data);
 const fiscalizeAmadeusEU: FiscalizationResponse = response.data;
@@ -78,9 +79,9 @@ You'll find information about what was wrong in the `errors` field, and useful c
 ```javascript
 try {
   const test = await fiscalizerAPI.fiscalizeFlightDuffel.post({ additionalProp: [] });
-  console.log(test)
+  console.log(test);
 } catch (error) {
-  console.log(error)
+  console.log(error);
 }
 ```
 

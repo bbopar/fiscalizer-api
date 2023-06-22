@@ -8,9 +8,9 @@ import {
 } from './types';
 
 export interface Config {
-  basePath?: string;
-  apiVersion?: string;
-  source?: string;
+  basePath: string;
+  apiKey: string;
+  company: string;
 }
 
 export class FiscalizerError extends Error {
@@ -32,13 +32,13 @@ export class FiscalizerError extends Error {
 
 export class Client {
   private basePath: string
-  private apiVersion: string
-  private source: string | undefined
+  private apiKey: string
+  private company: string
 
-  constructor({ basePath, apiVersion, source }: Config) {
-    this.basePath = basePath || 'http://localhost:5445'
-    this.apiVersion = apiVersion || 'v1'
-    this.source = source
+  constructor({ basePath, apiKey, company }: Config) {
+    this.basePath = basePath
+    this.apiKey = apiKey
+    this.company = company
   }
 
   public request = async <T_Data = any>({
@@ -60,8 +60,8 @@ export class Client {
 
     const headers = {
       'Content-Type': 'application/json',
-      company: 'TODO',
-      'api-key': 'TODO',
+      company: this.company,
+      'api-key': this.apiKey,
     };
 
     if (params) {
