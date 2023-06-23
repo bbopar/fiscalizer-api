@@ -8,6 +8,42 @@ Initially it's meant for Travel agencies and it covers most of the cases for Tra
 
 Travel agency for which package was developed: [Travelspot](http://app.travelspot.com/)
 
+# Koliko vrsta transakcija ima tarvelspot prema poreznom zakonu
+
+1. **Regularna procedura**
+   - Usluge agencije
+
+2. **Oslobođene transakcije**
+   - Prema članku 93. - To su smještaji van EU
+   - Reverse charge, čl. 17, st.1 ZPDV-u - Naplata Travelspot usluga zemljama van EU i onima koji nisu u VIES-u.
+
+3. **Usluge obavljene u svoje ime, a za tuđi račun**
+   - S maržom
+   - Bez marže
+
+4. **Usluge obavljene u tuđe ime i za tuđi račun (posredničke usluge)**
+
+5. **Usluge u svoje ime i za svoj račun (tzv. „mješovite“ usluge)**
+
+
+# Types of transactions for TravelSpot according to tax law
+
+1. **Regular procedure**
+   - Agency services
+
+2. **Exempt transactions**
+   - According to Article 93 - These are accommodations outside the EU
+   - Reverse charge, Art. 17, Par. 1 of VAT Act - Charging TravelSpot services to countries outside the EU and those not in VIES.
+
+3. **Services performed in its own name, but on behalf of others** (`ownNameOthersBehalfServices`)
+   - With a margin
+   - Without a margin
+
+4. **Services performed in others' names and on behalf of others (brokerage services)** (`brokerageServices`)
+
+5. **Services performed in its own name and on its own behalf (so-called "mixed" services)** (`mixedServices`)
+
+
 ### Requests
 
 - RegularProcedureRequest: Redovni postupak oporezivanja.
@@ -40,8 +76,8 @@ const fiscalizerAPI = new FiscalizerAPI({
 });
 
 // To quickly test whether your integration is working, you can fiscalize flight invoice for example.
-const fiscalizedFlight = await fiscalizerAPI.fiscalizeFlightDuffel.post(fiscalData);
-console.log(fiscalizedFlight);
+const invoicesForService = await fiscalizerAPI.fiscalizeOwnNameOthersBehalfServices.post(fiscalData);
+console.log(invoicesForService);
 ```
 
 ### TypeScript
@@ -51,12 +87,11 @@ The FiscalizerAPI JavaScript client library is written in TypeScript and comes w
 ```javascript
 import { FiscalizationResponse } from 'fiscalizer-api';
 
-const response = await fiscalizerAPI.fiscalizeFlightDuffel.post(invoice_data);
-const fiscalizeAmadeusEU: FiscalizationResponse = response.data;
-console.log(fiscalizeAmadeusEU);
+const response = await fiscalizerAPI.fiscalizeOwnNameOthersBehalfServices.post(invoice_data);
+console.log(response);
 ```
 
-Expected output from `console.log(fiscalizeAmadeusEU)`:
+Expected output from `console.log(response)`:
 
 ```json
 {
@@ -78,7 +113,7 @@ You'll find information about what was wrong in the `errors` field, and useful c
 
 ```javascript
 try {
-  const test = await fiscalizerAPI.fiscalizeFlightDuffel.post({ additionalProp: [] });
+  const test = await fiscalizerAPI.fiscalizeOwnNameOthersBehalfServices.post({ additionalProp: [] });
   console.log(test);
 } catch (error) {
   console.log(error);

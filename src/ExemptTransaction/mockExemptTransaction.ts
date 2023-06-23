@@ -1,12 +1,12 @@
 import {
   PaymentMethod,
   Sequence,
-  OwnNameOthersBehalfServicesRequest,
+  ExemptedTransactionsRequest,
 } from '../types/FiscalizationRequest';
 import { v4 as uuid } from 'uuid';
 import moment from 'moment-timezone';
 
-export const mockDuffelRequest: OwnNameOthersBehalfServicesRequest = {
+export const mockGDSAmadeusNonEU: ExemptedTransactionsRequest = {
   oib: '63896222880',
   messageId: uuid().toString(),
   isTaxLiable: true,
@@ -18,7 +18,7 @@ export const mockDuffelRequest: OwnNameOthersBehalfServicesRequest = {
     businessSpaceLabel: '01',
     chargingDeviceLabel: '4',
   },
-  vatExcludedAmount: '1300.00',
+  amountExemptVat: '1300.00',
   totalAmount: '1300.00',
   paymentMethod: PaymentMethod.K,
   zki: '969de172b2ba184e2eb94048fb567470',

@@ -1,6 +1,6 @@
 export type FiscalizationRequest = 
 | RegularProcedureRequest
-| TravelAgenciesAndTravelOrganizersServicesRequest
+| OwnNameOthersBehalfServicesRequest
 | ExemptedTransactionsRequest
 
 export interface BaseFiscalizationRequest {
@@ -29,7 +29,7 @@ export interface RegularProcedureRequest extends BaseFiscalizationRequest {
   amountExemptVat?: string
 }
 
-export interface TravelAgenciesAndTravelOrganizersServicesRequest extends BaseFiscalizationRequest {
+export interface OwnNameOthersBehalfServicesRequest extends BaseFiscalizationRequest {
   vatExcludedAmount: string
   marginAmount?: string
   vat?: Vat[]
